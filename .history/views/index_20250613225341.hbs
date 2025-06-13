@@ -1,0 +1,64 @@
+<!-- views/index.hbs (CORRIGÉ) -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizify</title>
+    {{!-- Le chemin NE commence PLUS par /public/ --}}
+    <link rel="stylesheet" href="/stylesheets/style.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-gradient"></div>
+
+    <header class="app-header">
+        <div class="header-left"></div>
+        <div class="header-center">
+            {{!-- CORRECTION ICI --}}
+            <img src="/images/Quizify-icon.png" alt="Quizify Icon" class="header-icon">
+            <div class="questions-left-text" style="display: none;">
+                {{t.remaining_questions}} <span id="questions-left">20</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <button id="login-button" class="login-button">{{t.login_screen_title}}</button>
+        </div>
+    </header>
+
+    <main class="content">
+        <!-- Le reste du contenu ne change pas -->
+        <section id="step-0" class="step active">
+            <div class="category-grid"></div>
+        </section>
+        <section id="step-1" class="step">
+            <div class="selector-container">
+                <h2 id="step-1-title">{{t.choose_number_questions}}</h2>
+                <div id="step-1-options"></div>
+                <button class="back-button" data-target-step="0">{{t.back}}</button>
+            </div>
+        </section>
+        <section id="step-2" class="step">
+            <div class="selector-container">
+                 <h2 id="step-2-title">{{t.choose_file_type}}</h2>
+                <div id="file-type-selector" class="file-options">
+                    <button class="file-type-button">{{t.file_text}}</button>
+                    <button class="file-type-button">{{t.file_image}}</button>
+                    <button class="file-type-button">{{t.file_pdf}}</button>
+                </div>
+                <div id="youtube-link-input" style="display:none;" class="youtube-container">
+                     <input type="text" id="youtube-url" placeholder="https://www.youtube.com/watch?v=...">
+                     <button class="ok-button">{{t.ok}}</button>
+                </div>
+                <button class="back-button" data-target-step="1">{{t.back}}</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        window.localeData = {{{json t}}};
+    </script>
+    {{!-- CORRECTION ICI --}}
+    <script src="/js/main.js" defer></script> 
+</body>
+</html>
